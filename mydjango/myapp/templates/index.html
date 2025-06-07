@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+    <style>
+
+    </style>
+</head>
+<body>
+ <form action="" method="post">
+{% csrf_token %}
+<input type="text" name="姓名" placeholder="姓名">
+<input type="text" name="年龄" placeholder="年龄">
+<input type="submit" value="提 交">
+</form>
+
+
+<h3 style="text-align: center">{{tijiao}}</h3>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>
+            姓名
+        </td>
+             <td>
+            年龄
+        </td>
+    </tr>
+    </thead>
+ <tbody>
+ {% for foo in list %}
+    <tr>
+        <td>
+            {{ foo.name }}
+        </td>
+             <td>
+           {{ foo.age }}
+        </td>
+    </tr>
+ {% endfor %}
+    </tbody>
+</table>
+
+ {% for foo in  form %}
+ 	{{ foo }}
+ {% endfor %}
+ 
+
+ <!--******************************************************************* -->
+<script src="../static/js/jQuery3.7.1.js"></script>
+<script src="../static/plugins/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

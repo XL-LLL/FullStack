@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue2.js"></script>
+    <script src="../static/js/vue-router4.js"></script>
+    <style>
+        .wb{
+            width: 100px;
+
+        }
+             .bd{
+              border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+<h3>  {{ name }}</h3>
+<h3>  {{ name + name }}</h3>
+<h3>  {{ 'ssss'+'bbbb'}}</h3>
+<h3>  {{ base+1+1}}</h3>
+<h3>  {{ 1==0 ?"true":"false"}}</h3>
+<h3>  {{ condition ?"true":"false"}}</h3>
+
+<button v-on:click="handleClick ">点击</button>
+    <button @click="handleClick ">点击</button>
+<div>
+
+     <img v-bind:src="imgpath"  v-bind:class="classpath"/>
+    <!--这时候 键是样式  也是寻找的 --> <!--info是样式  后面是是否显示  目的是显示多个样式-->
+     <img v-bind:src="imgpath"  v-bind:class="{info:tr, wb:tr }"/>
+
+    <img v-bind:src="imgpath"  :class="[ classpath ] "/>
+</div>
+<div>
+
+    <input type="text" v-model="user" v-on:click="clickinput ">
+     <h3> {{ bangd }}</h3>
+</div>
+
+ <li  v-for="(n,i) in list ">
+     <span v-for="(j,v) in n " > {{ v }}--{{ j }}</li></span>
+
+    <span v-if="istrue">显示if</span>
+    <span v-else >不显示if</span>
+    <span v-show="istrue">显示show</span>
+<h3>-----------------------------------------------</h3>
+    <bieming></bieming>
+    <quanjuzujian></quanjuzujian>
+    <h3>--------------------router绑定组件和网址---------------------------</h3>
+
+  <p>
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+  </p>
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
+
+</div>
+
+
+<script>
+
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+
+const router = new VueRouter({
+  routes:[
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+})
+
+
+
+
+
+    Vue.component("quanjuzujian", {
+        data:function (){
+            return{
+                name:'全局组件'
+            }
+        },
+        template:`
+                            <div>
+                         <h1>{{ name }}</h1>
+                         <input type="button" @click = "show" value="点我">
+                            </div> `
+                          ,
+        methods: {
+                 show :function (){
+                alert("全局组件")
+            }
+        }
+    }
+
+    )
+    const zujian = {
+        data:function (){
+            return{
+                name:'组件'
+            }
+        },
+        template:`
+                            <div>
+                         <h1>{{ name }}</h1>
+                         <input type="button" @click = "show" value="点我">
+                            </div> `
+                          ,
+        methods: {
+                 show :function (){
+                alert("组件")
+            }
+        }
+    }
+
+    var app = new Vue({
+        router:router,
+        el:'#app',
+        components:{
+            zujian,
+            bieming:zujian
+        },
+        data:{
+            name:"xulei",
+            condition:false,
+            base:1,
+            tr:true,
+            fa:false,
+            imgpath : "../static/img/a.png",
+            classpath:"wb",
+            bangd:'双向绑定',
+            list:[['xx','dd','cc'],['zz'],['vv']],
+            istrue:true
+        },
+        methods:{
+            handleClick:function (){
+
+                this.name = "hahah";
+            },
+            clickinput :function (){
+
+                this.bangd=this.user;
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>

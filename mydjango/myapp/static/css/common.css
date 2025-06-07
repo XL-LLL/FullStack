@@ -1,0 +1,17 @@
+ .c1{
+            color: #ff639d;
+        }
+
+  .c2{
+            height: 50px;
+           width: 50px;
+        }
+   .c3{
+         font-size: 10px; !important; /*这样就不会被后面的样式覆盖*/
+        }
+    .c4{
+        display: inline-block; /*使得对象同时具有块级标签与行内标签的功能*/
+        height: 21px;
+        width: 321px ;
+        border: 2px solid #ff639d;
+        }
